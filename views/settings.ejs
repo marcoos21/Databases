@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous"
+  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Author Settings</title>
+  <body>
+    <center>
+    <% authorSettings.forEach(authorSetting => {%>
+    <form action = "/user/SaveSettings/<%= authorSetting.authors_user_id %>" method="post">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Blog Title</label>
+        <input class="form-control" type="text" name = "blogTitle" value = "<%= authorSetting.blogTitle %>" required>
+        <small id="emailHelp" class="form-text text-muted"></small>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Blog Subtitle</label>
+        <input class="form-control" type="text" name = "blogSubtitle" value = "<%= authorSetting.blogSubtitle %>" required>
+        <small id="emailHelp" class="form-text text-muted"></small>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Author Name</label>
+        <input class="form-control" type="text" name = "authors_name" value = "<%= authorSetting.authors_name %>" required>
+      </div>
+      <!-- A hidden input field for authors_user_id -->
+      <input type="hidden" name="authors_user_id" value="<%= authorSettings.authors_user_id %>">
+        <button type="submit" class="btn btn-primary">Save Settings</button>
+        <a href ="/user/authors" class="btn btn-primary">Back</a>
+    </form>
+    <br>
+    <% }); %>
+    </center>
+  </body>
+</html>
